@@ -1,0 +1,117 @@
+{
+  "apiVersion": 1,
+  "id": "lisa",
+  "name": "Lisa",
+  "author": "Jiayuan Zhang",
+  "version": "1.0.0",
+  "description": "The Apple Lisa Office System of 1983: one-bit black and white, the Lisa system font, a dithered grey desktop, inverted selection and hard drop shadows. Dark mode is inverse video.",
+  "options": [
+    {
+      "id": "lisa-type",
+      "type": "select",
+      "label": {
+        "en": "Document font",
+        "zh-Hans": "文档字体",
+        "zh-Hant": "文件字型",
+        "ja": "文書フォント",
+        "ko": "문서 글꼴",
+        "es": "Fuente de documentos",
+        "fr": "Police des documents"
+      },
+      "description": {
+        "en": "Issue descriptions, comments and chat. LisaWrite set documents in Modern and Classic.",
+        "zh-Hans": "用于事项描述、评论和聊天。LisaWrite 的文档字体就叫 Modern 和 Classic。",
+        "zh-Hant": "用於事項描述、評論和聊天。LisaWrite 的文件字型就叫 Modern 和 Classic。",
+        "ja": "課題の説明、コメント、チャットに使います。LisaWrite の文書書体は Modern と Classic でした。",
+        "ko": "이슈 설명, 댓글, 채팅에 쓰입니다. LisaWrite의 문서 글꼴은 Modern과 Classic이었습니다.",
+        "es": "Descripciones, comentarios y chat. LisaWrite componía los documentos en Modern y Classic.",
+        "fr": "Descriptions, commentaires et chat. LisaWrite composait ses documents en Modern et Classic."
+      },
+      "default": "system",
+      "choices": [
+        {
+          "value": "system",
+          "label": {
+            "en": "Lisa system font",
+            "zh-Hans": "Lisa 系统字体",
+            "zh-Hant": "Lisa 系統字型",
+            "ja": "Lisa システムフォント",
+            "ko": "Lisa 시스템 글꼴",
+            "es": "Fuente del sistema Lisa",
+            "fr": "Police système Lisa"
+          }
+        },
+        {
+          "value": "modern",
+          "label": {
+            "en": "Modern (Helvetica)",
+            "zh-Hans": "Modern（Helvetica）",
+            "zh-Hant": "Modern（Helvetica）",
+            "ja": "Modern（Helvetica）",
+            "ko": "Modern (Helvetica)",
+            "es": "Modern (Helvetica)",
+            "fr": "Modern (Helvetica)"
+          }
+        },
+        {
+          "value": "classic",
+          "label": {
+            "en": "Classic (Times)",
+            "zh-Hans": "Classic（Times）",
+            "zh-Hant": "Classic（Times）",
+            "ja": "Classic（Times）",
+            "ko": "Classic (Times)",
+            "es": "Classic (Times)",
+            "fr": "Classic (Times)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lisa-desktop",
+      "type": "toggle",
+      "label": {
+        "en": "Dithered desktop",
+        "zh-Hans": "抖动网点桌面",
+        "zh-Hant": "抖動網點桌面",
+        "ja": "ディザパターンのデスクトップ",
+        "ko": "디더링 바탕화면",
+        "es": "Escritorio con trama",
+        "fr": "Bureau tramé"
+      },
+      "description": {
+        "en": "The one-bit grey pattern behind the window. Off, the desktop is flat grey.",
+        "zh-Hans": "窗口后面的 1-bit 灰色网点。关闭后桌面为纯灰色。",
+        "zh-Hant": "視窗後面的 1-bit 灰色網點。關閉後桌面為純灰色。",
+        "ja": "ウィンドウの背後にある 1 ビットの灰色パターン。オフにするとデスクトップは単色の灰色になります。",
+        "ko": "창 뒤의 1비트 회색 패턴. 끄면 바탕화면이 단색 회색이 됩니다.",
+        "es": "La trama gris de un bit detrás de las ventanas. Desactivada, el escritorio es gris liso.",
+        "fr": "La trame grise à un bit derrière les fenêtres. Désactivée, le bureau est gris uni."
+      },
+      "default": true
+    },
+    {
+      "id": "lisa-colour",
+      "type": "toggle",
+      "label": {
+        "en": "Colour status and labels",
+        "zh-Hans": "彩色状态和标签",
+        "zh-Hant": "彩色狀態和標籤",
+        "ja": "ステータスとラベルをカラーで表示",
+        "ko": "상태와 라벨을 컬러로",
+        "es": "Estados y etiquetas en color",
+        "fr": "États et libellés en couleur"
+      },
+      "description": {
+        "en": "Off, everything is black and white, as on the Lisa's screen.",
+        "zh-Hans": "关闭时一切都是黑白的，和 Lisa 的屏幕一样。",
+        "zh-Hant": "關閉時一切都是黑白的，和 Lisa 的螢幕一樣。",
+        "ja": "オフのときは Lisa の画面と同じく、すべて白黒です。",
+        "ko": "끄면 Lisa의 화면처럼 모두 흑백입니다.",
+        "es": "Desactivado, todo es en blanco y negro, como en la pantalla del Lisa.",
+        "fr": "Désactivé, tout est en noir et blanc, comme sur l'écran du Lisa."
+      },
+      "default": false
+    }
+  ]
+}

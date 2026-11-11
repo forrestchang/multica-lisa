@@ -1,0 +1,427 @@
+/* Lisa for Multica.
+   Variables: https://github.com/multica-ai/multica/blob/main/docs/theming.md
+
+   The Apple Lisa Office System, 1983: a one-bit screen, so everything is
+   black or white. Grey exists only as a dither pattern, selection is
+   inverse video, windows are square with a hard drop shadow, and buttons
+   are QuickDraw round rects. Dark mode is the same screen in inverse video.
+   Solid greys stand in for the patterns wherever a variable needs a colour.
+
+   Fonts: Twiggy (the Lisa's SYSTEXT system font) and LisaTerminal Paper
+   (LisaTerminal's TILE*VT font), pixel-perfect recreations by Kreative
+   Korporation, https://www.kreativekorp.com/software/fonts/retro/
+   (Kreative Software Relay Fonts Free Use License, fonts/LICENSE-FONT.txt).
+   Both are drawn on a 100-unit pixel grid: Twiggy is sharp at 13px and
+   26px, LisaTerminal Paper at 12px. */
+
+@font-face {
+  font-family: "Multica Lisa";
+  src: url(fonts/TwiggyRaw.ttf) format("truetype");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Multica Lisa Terminal";
+  src: url(fonts/LisaTerminalPaperRaw.ttf) format("truetype");
+  font-display: block;
+}
+
+.theme-light,
+.theme-dark {
+  --font-ui: "Multica Lisa", "Helvetica Neue", Helvetica, Arial;
+  --font-content-latin: "Multica Lisa", "Helvetica Neue", Helvetica, Arial;
+  --font-mono: "Multica Lisa Terminal", Monaco, Menlo, Consolas;
+
+  --text-micro: calc(13px * var(--font-scale, 1));
+  --text-micro--line-height: calc(15px * var(--font-scale, 1));
+  --text-caption: calc(13px * var(--font-scale, 1));
+  --text-caption--line-height: calc(16px * var(--font-scale, 1));
+  --text-label: calc(13px * var(--font-scale, 1));
+  --text-label--line-height: calc(18px * var(--font-scale, 1));
+  --text-body: calc(13px * var(--font-scale, 1));
+  --text-body--line-height: calc(20px * var(--font-scale, 1));
+  --text-body-lg: calc(13px * var(--font-scale, 1));
+  --text-body-lg--line-height: calc(20px * var(--font-scale, 1));
+  --text-title-sm: calc(13px * var(--font-scale, 1));
+  --text-title-sm--line-height: calc(20px * var(--font-scale, 1));
+  --text-title: calc(13px * var(--font-scale, 1));
+  --text-title--line-height: calc(20px * var(--font-scale, 1));
+  --text-title-lg: calc(26px * var(--font-scale, 1));
+  --text-title-lg--line-height: calc(32px * var(--font-scale, 1));
+  --text-display-sm: calc(26px * var(--font-scale, 1));
+  --text-display-sm--line-height: calc(32px * var(--font-scale, 1));
+  --text-display: calc(39px * var(--font-scale, 1));
+  --text-display--line-height: calc(44px * var(--font-scale, 1));
+  --code-font-size: calc(12px * var(--font-scale, 1));
+  --code-block-font-size: calc(12px * var(--font-scale, 1));
+
+  --blockquote-style: normal;
+
+  --radius: 0px;
+  --button-radius: 6px;
+  --button-radius-sm: 5px;
+  --label-radius: 3px;
+  --page-radius: 0px;
+  --surface-shadow: none;
+  --tooltip-shadow: none;
+  --highlight-radius: 0px;
+  --link-underline-offset: 3px;
+  --icon-stroke-width: 1.75;
+}
+
+/* Content redeclares the text scale at the app's sizes, so in the Lisa font
+   it is put back on the 13px grid. */
+:root[data-theme-option-lisa-type="system"] [data-mc="content"] {
+  --text-micro: calc(13px * var(--content-size));
+  --text-caption: calc(13px * var(--content-size));
+  --text-label: calc(13px * var(--content-size));
+  --text-body: calc(13px * var(--content-size));
+  --text-body-lg: calc(13px * var(--content-size));
+  --text-title-sm: calc(13px * var(--content-size));
+  --text-title: calc(13px * var(--content-size));
+  --text-display-sm: calc(26px * var(--content-size));
+  --h1-size: calc(39px * var(--content-size));
+  --h2-size: calc(26px * var(--content-size));
+  --h3-size: calc(13px * var(--content-size));
+  --h4-size: calc(13px * var(--content-size));
+  --h5-size: calc(13px * var(--content-size));
+  --h6-size: calc(13px * var(--content-size));
+  --h1-weight: 400;
+  --h2-weight: 400;
+  --h3-weight: 400;
+  --h4-weight: 400;
+  --h5-weight: 400;
+  --h6-weight: 400;
+  --bold-weight: 400;
+  --mention-weight: 400;
+  --table-header-weight: 400;
+  --content-leading: 1.54;
+}
+
+.theme-light[data-theme-option-lisa-type="modern"],
+.theme-dark[data-theme-option-lisa-type="modern"] {
+  --font-content-latin: "Helvetica Neue", Helvetica, Arial;
+}
+
+.theme-light[data-theme-option-lisa-type="classic"],
+.theme-dark[data-theme-option-lisa-type="classic"] {
+  --font-content-latin: "Times New Roman", Times, Georgia;
+}
+
+/* Black on white. */
+.theme-light {
+  --lisa-ink: #000000;
+  --lisa-paper: #ffffff;
+  --lisa-desk: #a8a8a8;
+
+  --app-shell: #ffffff;
+  --sidebar: #ffffff;
+  --page-canvas: #ffffff;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-hover: #e8e8e8;
+  --surface-selected: #d6d6d6;
+  --surface-border: #000000;
+  --page-border-color: #000000;
+  --border: #000000;
+  --input: #000000;
+  --muted: #eeeeee;
+  --secondary: #ffffff;
+  --accent: #e8e8e8;
+  --sidebar-accent: #d6d6d6;
+  --sidebar-border: #000000;
+
+  --foreground: #000000;
+  --surface-foreground: #000000;
+  --surface-selected-foreground: #000000;
+  --card-foreground: #000000;
+  --popover-foreground: #000000;
+  --secondary-foreground: #000000;
+  --accent-foreground: #000000;
+  --sidebar-foreground: #000000;
+  --sidebar-accent-foreground: #000000;
+  --muted-foreground: #505050;
+  --faint-foreground: #6e6e6e;
+
+  --rail-item-color: #000000;
+  --rail-item-hover-background: #505050;
+  --rail-item-active-background: #000000;
+  --rail-item-active-color: #ffffff;
+  --nav-item-color: #000000;
+  --nav-item-hover-background: #e8e8e8;
+  --nav-item-active-background: #000000;
+  --nav-item-active-color: #ffffff;
+  --menu-item-hover-background: #000000;
+  --menu-item-hover-color: #ffffff;
+  --display-chip-pressed-background: #000000;
+  --display-chip-pressed-color: #ffffff;
+
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --brand: #000000;
+  --brand-foreground: #ffffff;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #ffffff;
+  --ring: #000000;
+  --sidebar-ring: #000000;
+
+  --destructive: #000000;
+  --success: #000000;
+  --warning: #000000;
+  --info: #000000;
+  --priority-high: #000000;
+  --priority-medium: #000000;
+  --priority-low: #000000;
+  --priority-none: #6e6e6e;
+
+  --chart-1: #000000;
+  --chart-2: #4a4a4a;
+  --chart-3: #7a7a7a;
+  --chart-4: #a8a8a8;
+  --chart-5: #d0d0d0;
+
+  --page-shadow: 2px 2px 0 #000000;
+  --floating-border-color: #000000;
+  --floating-shadow: 0 0 0 1px #000000, 3px 3px 0 #000000;
+  --menu-shadow: 0 0 0 1px #000000, 2px 2px 0 #000000;
+  --tooltip: #000000;
+  --tooltip-foreground: #ffffff;
+  --find-match: #bcbcbc;
+  --find-match-active: #000000;
+  --find-match-foreground: #000000;
+  --highlight-background: #d0d0d0;
+  --scrollbar-thumb: #8c8c8c;
+  --scrollbar-thumb-hover: #000000;
+
+  --issue-group-header-background: #eeeeee;
+  --issue-group-header-hover-background: #e0e0e0;
+  --issue-row-selected-background: #d6d6d6;
+  --board-column-background: #eeeeee;
+  --board-card-shadow: 2px 2px 0 #000000;
+  --blockquote-border-color: #000000;
+  --blockquote-color: #000000;
+  --link-decoration-color: #000000;
+  --table-header-background: #eeeeee;
+  --table-header-color: #000000;
+  --code-background: #ffffff;
+  --code-border-color: #000000;
+  --code-color: #000000;
+  --code-block-background: #ffffff;
+  --code-block-border: 1px solid #000000;
+
+  --code-keyword: #000000;
+  --code-string: #404040;
+  --code-comment: #6e6e6e;
+  --code-number: #404040;
+  --code-function: #000000;
+  --code-property: #404040;
+  --code-variable: #000000;
+  --code-type: #000000;
+  --code-deletion: #000000;
+  --code-tag: #000000;
+  --code-punctuation: #6e6e6e;
+}
+
+/* Inverse video. */
+.theme-dark {
+  --lisa-ink: #ffffff;
+  --lisa-paper: #000000;
+  --lisa-desk: #505050;
+
+  --app-shell: #000000;
+  --sidebar: #000000;
+  --page-canvas: #000000;
+  --surface: #000000;
+  --surface-raised: #000000;
+  --surface-hover: #1c1c1c;
+  --surface-selected: #2e2e2e;
+  --surface-border: #ffffff;
+  --page-border-color: #ffffff;
+  --border: #ffffff;
+  --input: #ffffff;
+  --muted: #141414;
+  --secondary: #000000;
+  --accent: #1c1c1c;
+  --sidebar-accent: #2e2e2e;
+  --sidebar-border: #ffffff;
+
+  --foreground: #ffffff;
+  --surface-foreground: #ffffff;
+  --surface-selected-foreground: #ffffff;
+  --card-foreground: #ffffff;
+  --popover-foreground: #ffffff;
+  --secondary-foreground: #ffffff;
+  --accent-foreground: #ffffff;
+  --sidebar-foreground: #ffffff;
+  --sidebar-accent-foreground: #ffffff;
+  --muted-foreground: #b0b0b0;
+  --faint-foreground: #8a8a8a;
+
+  --rail-item-color: #ffffff;
+  --rail-item-hover-background: #b0b0b0;
+  --rail-item-active-background: #ffffff;
+  --rail-item-active-color: #000000;
+  --nav-item-color: #ffffff;
+  --nav-item-hover-background: #1c1c1c;
+  --nav-item-active-background: #ffffff;
+  --nav-item-active-color: #000000;
+  --menu-item-hover-background: #ffffff;
+  --menu-item-hover-color: #000000;
+  --display-chip-pressed-background: #ffffff;
+  --display-chip-pressed-color: #000000;
+
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --brand: #ffffff;
+  --brand-foreground: #000000;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #000000;
+  --ring: #ffffff;
+  --sidebar-ring: #ffffff;
+
+  --destructive: #ffffff;
+  --success: #ffffff;
+  --warning: #ffffff;
+  --info: #ffffff;
+  --priority-high: #ffffff;
+  --priority-medium: #ffffff;
+  --priority-low: #ffffff;
+  --priority-none: #8a8a8a;
+
+  --chart-1: #ffffff;
+  --chart-2: #c4c4c4;
+  --chart-3: #8f8f8f;
+  --chart-4: #5e5e5e;
+  --chart-5: #363636;
+
+  --page-shadow: 2px 2px 0 #ffffff;
+  --floating-border-color: #ffffff;
+  --floating-shadow: 0 0 0 1px #ffffff, 3px 3px 0 #ffffff;
+  --menu-shadow: 0 0 0 1px #ffffff, 2px 2px 0 #ffffff;
+  --tooltip: #ffffff;
+  --tooltip-foreground: #000000;
+  --find-match: #5a5a5a;
+  --find-match-active: #ffffff;
+  --find-match-foreground: #000000;
+  --highlight-background: #4a4a4a;
+  --scrollbar-thumb: #7a7a7a;
+  --scrollbar-thumb-hover: #ffffff;
+
+  --issue-group-header-background: #141414;
+  --issue-group-header-hover-background: #242424;
+  --issue-row-selected-background: #2e2e2e;
+  --board-column-background: #141414;
+  --board-card-shadow: 2px 2px 0 #ffffff;
+  --blockquote-border-color: #ffffff;
+  --blockquote-color: #ffffff;
+  --link-decoration-color: #ffffff;
+  --table-header-background: #141414;
+  --table-header-color: #ffffff;
+  --code-background: #000000;
+  --code-border-color: #ffffff;
+  --code-color: #ffffff;
+  --code-block-background: #000000;
+  --code-block-border: 1px solid #ffffff;
+
+  --code-keyword: #ffffff;
+  --code-string: #c4c4c4;
+  --code-comment: #8a8a8a;
+  --code-number: #c4c4c4;
+  --code-function: #ffffff;
+  --code-property: #c4c4c4;
+  --code-variable: #ffffff;
+  --code-type: #ffffff;
+  --code-deletion: #ffffff;
+  --code-tag: #ffffff;
+  --code-punctuation: #8a8a8a;
+}
+
+/* Colour: status and priority keep their hues, darkened for white paper
+   and lightened for black. */
+.theme-light[data-theme-option-lisa-colour] {
+  --destructive: #c00000;
+  --success: #00701a;
+  --warning: #8a5a00;
+  --info: #0040c0;
+  --priority-high: #b04a00;
+  --priority-medium: #8a5a00;
+  --priority-low: #0040c0;
+}
+
+.theme-dark[data-theme-option-lisa-colour] {
+  --destructive: #ff6b6b;
+  --success: #5ee07a;
+  --warning: #ffc94d;
+  --info: #7aa8ff;
+  --priority-high: #ff9a4d;
+  --priority-medium: #ffc94d;
+  --priority-low: #7aa8ff;
+}
+
+/* The Lisa's screen had one bit per pixel: labels lose their colour. */
+:root:not([data-theme-option-lisa-colour]) [data-mc="label-chip"] {
+  filter: grayscale(1) contrast(1.4);
+}
+
+/* The frame is paper, like the Lisa's menu bar, with a rule where it meets
+   the desktop. The desktop is the column that holds the page: grey, or a
+   50% dither with the option on. The page sits on it as a window. */
+.theme-light [data-mc="app-rail"],
+.theme-dark [data-mc="app-rail"] {
+  box-shadow: inset -1px 0 0 var(--lisa-ink);
+}
+
+.theme-light :has(> [data-mc="page"]),
+.theme-dark :has(> [data-mc="page"]) {
+  background-color: var(--lisa-desk);
+}
+
+:root[data-theme-option-lisa-desktop] :has(> [data-mc="page"]) {
+  background-color: var(--lisa-paper);
+  background-image: repeating-conic-gradient(var(--lisa-ink) 0% 25%, var(--lisa-paper) 0% 50%);
+  background-size: 2px 2px;
+}
+
+.theme-light :is([data-mc="tab-bar"], [data-mc="bottom-bar"]),
+.theme-dark :is([data-mc="tab-bar"], [data-mc="bottom-bar"]) {
+  background-color: var(--app-shell);
+}
+
+.theme-light [data-mc="tab-bar"],
+.theme-dark [data-mc="tab-bar"] {
+  box-shadow: inset 0 -1px 0 var(--lisa-ink);
+}
+
+.theme-light [data-mc="bottom-bar"],
+.theme-dark [data-mc="bottom-bar"] {
+  box-shadow: inset 0 1px 0 var(--lisa-ink);
+}
+
+@media (min-width: 768px) {
+  .theme-light [data-mc="page"],
+  .theme-dark [data-mc="page"] {
+    margin: 8px 10px 10px 8px;
+  }
+}
+
+/* Alert boxes: a double rule, then the hard shadow. */
+.theme-light :is([data-slot="dialog-content"], [data-slot="alert-dialog-content"]),
+.theme-dark :is([data-slot="dialog-content"], [data-slot="alert-dialog-content"]) {
+  --floating-shadow: 0 0 0 1px var(--lisa-ink), 0 0 0 3px var(--lisa-paper), 0 0 0 5px var(--lisa-ink), 7px 7px 0 4px var(--lisa-ink);
+}
+
+/* Inverse video for selected text. */
+.theme-light ::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.theme-dark ::selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Twiggy has one weight: bold stays as drawn instead of being smeared. */
+:root[data-theme="lisa"] body {
+  font-synthesis: none;
+}
